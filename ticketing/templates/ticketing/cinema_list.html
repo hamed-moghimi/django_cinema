@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>لیست فیلم‌ها</title>
+</head>
+<body dir="rtl">
+<h1>
+    سامانه فروش بلیت سینما
+</h1>
+<h2>
+    فهرست سینماها
+</h2>
+
+<ul>
+    <li>
+        <a href="{% url "ticketing:movie_list" %}">
+            فیلم‌ها
+        </a>
+    </li>
+    <li>
+        <a href="{% url "ticketing:cinema_list" %}">
+            سینماها
+        </a>
+    </li>
+</ul>
+
+{% if cinemas %}
+    <ul>
+        {% for cinema in cinemas %}
+            <li>
+                {{ cinema }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p style="color: red">
+        در حال حاضر هیچ سینمایی برای نمایش وجود ندارد.
+    </p>
+{% endif %}
+</body>
+</html>

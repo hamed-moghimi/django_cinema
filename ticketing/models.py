@@ -5,11 +5,16 @@ class Movie(models.Model):
     """
     Represents a movie
     """
-    name = models.CharField(max_length=100)
-    director = models.CharField(max_length=50)
-    year = models.IntegerField()
-    length = models.IntegerField()
-    description = models.TextField()
+
+    class Meta:
+        verbose_name = 'فیلم'
+        verbose_name_plural = 'فیلم'
+
+    name = models.CharField('عنوان', max_length=100)
+    director = models.CharField('کارگردان', max_length=50)
+    year = models.IntegerField('سال تولید')
+    length = models.IntegerField('مدت زمان')
+    description = models.TextField('توضیح فیلم')
 
     def __str__(self):
         return self.name
@@ -19,11 +24,16 @@ class Cinema(models.Model):
     """
     Represents a cinema (movie theater)
     """
-    name = models.CharField(max_length=50)
-    city = models.CharField(max_length=30, default='تهران')
-    capacity = models.IntegerField()
-    phone = models.CharField(max_length=30, blank=True)
-    address = models.TextField()
+
+    class Meta:
+        verbose_name = 'سینما'
+        verbose_name_plural = 'سینما'
+
+    name = models.CharField('نام', max_length=50)
+    city = models.CharField('شهر', max_length=30, default='تهران')
+    capacity = models.IntegerField('گنجایش')
+    phone = models.CharField('تلفن', max_length=30, blank=True)
+    address = models.TextField('آدرس')
 
     def __str__(self):
         return self.name
@@ -33,16 +43,21 @@ class ShowTime(models.Model):
     """
     Represents a movie show in a cinema at a specific time
     """
+
+    class Meta:
+        verbose_name = 'سانس'
+        verbose_name_plural = 'سانس'
+
     # read more about on_delete from
     # https://docs.djangoproject.com/en/2.2/ref/models/fields/#django.db.models.ForeignKey.on_delete
     # choices are PROTECT, CASCADE, SET_NULL, SET_DEFAULT, SET(), DO_NOTHING
-    movie = models.ForeignKey('Movie', on_delete=models.PROTECT)
-    cinema = models.ForeignKey('Cinema', on_delete=models.PROTECT)
+    movie = models.ForeignKey('Movie', on_delete=models.PROTECT, verbose_name='فیلم')
+    cinema = models.ForeignKey('Cinema', on_delete=models.PROTECT, verbose_name='سینما')
 
-    start_time = models.DateTimeField()
-    price = models.IntegerField()
-    salable_seats = models.IntegerField()
-    free_seats = models.IntegerField()
+    start_time = models.DateTimeField('زمان شروع نمایش')
+    price = models.IntegerField('قیمت')
+    salable_seats = models.IntegerField('صندلی‌های قابل فروش')
+    free_seats = models.IntegerField('صندلی‌های خالی')
 
     SALE_NOT_STARTED = 1
     SALE_OPEN = 2
@@ -58,7 +73,7 @@ class ShowTime(models.Model):
         (MOVIE_PLAYED, 'فیلم پخش شد'),
         (SHOW_CANCELED, 'سانس لغو شد'),
     )
-    status = models.IntegerField(choices=status_choices, default=SALE_NOT_STARTED)
+    status = models.IntegerField('وضعیت', choices=status_choices, default=SALE_NOT_STARTED)
 
     def __str__(self):
         return '{} - {} - {}'.format(self.movie, self.cinema, self.start_time)

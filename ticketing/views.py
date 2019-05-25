@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from ticketing.models import ShowTime
 from .models import Movie, Cinema
 
 
@@ -33,3 +34,11 @@ def cinema_details(request, cinema_id):
         'cinema': cinema
     }
     return render(request, 'ticketing/cinema_details.html', context)
+
+
+def showtime_list(request):
+    showtimes = ShowTime.objects.all().order_by('start_time')
+    context = {
+        'showtimes': showtimes
+    }
+    return render(request, 'ticketing/showtime_list.html', context)

@@ -97,3 +97,14 @@ ul.item-list > li > a {
     min-height: 200px;
     border: solid 1px #393939;
 }
+
+/* showtime list page styles */
+.showtime-box {
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+.showtime-box .showtime-status {
+    font-size: 0.8em;
+    font-weight: normal;
+}

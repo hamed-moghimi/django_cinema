@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block extra_headers %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static "ticketing/css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "ticketing/css/font-awesome.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "ticketing/css/main.css" %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body dir="rtl">
+<div class="container" id="container">
+    <div class="row align-items-center" id="header">
+        <div class="col text-center">
+            <h2>
+                سامانه فروش بلیت سینما
+            </h2>
+        </div>
+    </div>
+    <div class="row align-items-center" id="toolbar">
+        <div class="col-6">
+            <h4>
+                {% block toolbar_title %}{% endblock %}
+            </h4>
+        </div>
+        <div class="col-6 text-left">
+            {% block toolbar_buttons %}
+                <a class="btn btn-light py-1 px-2" href="{% url "ticketing:movie_list" %}">
+                    <i class="fas fa-film"></i>
+                    فیلم‌ها
+                </a>
+                <a class="btn btn-light py-1 px-2" href="{% url "ticketing:cinema_list" %}">
+                    <i class="fas fa-building"></i>
+                    سینماها
+                </a>
+            {% endblock %}
+        </div>
+    </div>
+
+    {% block main_content %}{% endblock %}
+
+    <div class="row align-content-center" id="footer">
+        <div class="col text-center">
+            <span>
+                ما را در شبکه‌های اجتماعی دنبال کنید.
+
+                <a class="social-media-icon" href="https://facebook.com/#">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a class="social-media-icon" href="https://twitter.com/#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a class="social-media-icon" href="https://instagram.com/#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="social-media-icon" href="https://telegram.org/#">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<script src="{% static "ticketing/js/jquery-3.4.0.min.js" %}"></script>
+<script src="{% static "ticketing/js/font-awesome.js" %}"></script>
+<script src="{% static "ticketing/js/main.js" %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -17,3 +17,19 @@ def cinema_list(request):
         'cinemas': cinemas
     }
     return render(request, 'ticketing/cinema_list.html', context)
+
+
+def movie_details(request, movie_id):
+    movie = Movie.objects.get(pk=movie_id)
+    context = {
+        'movie': movie
+    }
+    return render(request, 'ticketing/movie_details.html', context)
+
+
+def cinema_details(request, cinema_id):
+    cinema = Cinema.objects.get(pk=cinema_id)
+    context = {
+        'cinema': cinema
+    }
+    return render(request, 'ticketing/cinema_details.html', context)

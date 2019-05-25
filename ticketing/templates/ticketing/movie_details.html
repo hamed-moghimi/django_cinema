@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>فهرست سینماها</title>
+    <title>{{ movie.name }}</title>
     <link rel="stylesheet" type="text/css" href="{% static "ticketing/css/bootstrap.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "ticketing/css/font-awesome.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "ticketing/css/main.css" %}">
@@ -20,47 +20,63 @@
     <div class="row align-items-center" id="toolbar">
         <div class="col-6">
             <h4>
-                فهرست سینماها
+                <i class="fas fa-film"></i>
+                {{ movie.name }}
             </h4>
         </div>
         <div class="col-6 text-left">
-            <a class="btn btn-light py-1 px-2" href="{% url "ticketing:movie_list" %}">
-                <i class="fas fa-film"></i>
-                فیلم‌ها
-            </a>
-            <a class="btn btn-light py-1 px-2" href="{% url "ticketing:cinema_list" %}">
-                <i class="fas fa-building"></i>
-                سینماها
+            <a class="btn btn-warning py-1 px-2" href="{% url "ticketing:movie_list" %}">
+                <i class="fas fa-list"></i>
+                فهرست فیلم‌ها
             </a>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col py-3">
-            {% if cinemas %}
-                <ul class="item-list">
-                    {% for cinema in cinemas %}
-                        <li>
-                            <a href="{% url "ticketing:cinema_details" cinema_id=cinema.id %}">
-                                <i class="fas fa-building"></i>
-                                {{ cinema }}
-                                {% if cinema.city %}
-                                    <small class="text-muted">
-                                        ({{ cinema.city }})
-                                    </small>
-                                {% endif %}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <div class="alert alert-danger">
-                    در حال حاضر هیچ سالنی برای نمایش وجود ندارد.
+    {# start page content here #}
+    <div class="row py-3">
+        <div class="col-8 item-details">
+            <div class="row px-3">
+                <div class="col-3">
+                    <small class="text-muted">
+                        کارگردان:
+                    </small>
                 </div>
-            {% endif %}
+                <div class="col-9">
+                    {{ movie.director }}
+                </div>
+                <div class="w-100 my-1"></div>
+                <div class="col-3">
+                    <small class="text-muted">
+                        محصول سال:
+                    </small>
+                </div>
+                <div class="col-9">
+                    {{ movie.year }}
+                </div>
+                <div class="w-100 my-1"></div>
+                <div class="col-3">
+                    <small class="text-muted">
+                        مدت زمان:
+                    </small>
+                </div>
+                <div class="col-9">
+                    {{ movie.length }}
+                    دقیقه
+                </div>
+                <div class="w-100 my-1"></div>
+                <div class="col-3">
+                    <small class="text-muted">
+                        داستان فیلم:
+                    </small>
+                </div>
+                <div class="col-9 item-text-box">
+                    {{ movie.description }}
+                </div>
+            </div>
+        </div>
+        <div class="col-4 text-center">
+            <img class="item-image" src="{{ movie.poster.url }}" alt="{{ movie.name }}">
         </div>
     </div>
-
     <div class="row align-content-center" id="footer">
         <div class="col text-center">
             <span>

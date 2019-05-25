@@ -72,3 +72,28 @@ ul.item-list > li:nth-child(2n) {
 ul.item-list > li:hover {
     background-color: #c3c3c3;
 }
+
+ul.item-list > li > a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* item details page styles */
+.item-details > div.row > div {
+    line-height: 2em;
+    background-color: #e6e6e6;
+}
+
+.item-text-box {
+    font-size: 0.8em;
+    min-height: 100px;
+    background-color: #e6e6e6;
+    text-align: justify;
+}
+
+.item-image {
+    width: 150px;
+    min-height: 200px;
+    border: solid 1px #393939;
+}

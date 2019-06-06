@@ -4,3 +4,17 @@
     width: 60%;
     margin: 30px auto;
 }
+
+
+.profile-image {
+    max-width: 100px;
+    border-radius: 50%;
+}
+
+.btn-xs {
+    font-size: 0.6em;
+}
+
+.profile-buttons .btn {
+    font-size: 0.7em;
+}

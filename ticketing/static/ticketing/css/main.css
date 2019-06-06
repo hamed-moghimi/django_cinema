@@ -40,7 +40,15 @@ body {
     margin: 0;
 }
 
-#toolbar a.btn {
+#toolbar .btn {
+    font-size: 0.7em;
+}
+
+#toolbar div.dropdown {
+    display: inline-block;
+}
+
+#toolbar .dropdown-item {
     font-size: 0.7em;
 }
 

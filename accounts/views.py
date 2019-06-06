@@ -5,6 +5,7 @@ from django.urls import reverse
 
 
 def login_view(request):
+    next_url = request.GET.get('next')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -12,7 +13,8 @@ def login_view(request):
         if user is not None:
             # Successful login
             login(request, user)
-            return HttpResponseRedirect(reverse('ticketing:showtime_list'))
+            redirect_url = next_url if next_url else reverse('ticketing:showtime_list')
+            return HttpResponseRedirect(redirect_url)
         else:
             # undefined user or wrong password
             context = {

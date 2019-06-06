@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from ticketing.models import ShowTime
@@ -36,6 +37,7 @@ def cinema_details(request, cinema_id):
     return render(request, 'ticketing/cinema_details.html', context)
 
 
+@login_required
 def showtime_list(request):
     showtimes = ShowTime.objects.all().order_by('start_time')
     context = {

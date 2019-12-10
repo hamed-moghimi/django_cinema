@@ -9,4 +9,5 @@ urlpatterns = [
     path('cinema/list/', views.cinema_list, name='cinema_list'),
     path('cinema/details/<int:cinema_id>/', views.cinema_details, name='cinema_details'),
     path('showtime/list/', views.showtime_list, name='showtime_list'),
+    path('showtime/details/<int:showtime_id>/', views.showtime_details, name='showtime_details'),
 ]

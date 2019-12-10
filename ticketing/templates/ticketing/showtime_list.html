@@ -16,7 +16,7 @@
                 <div class="row px-2">
                     {% for showtime in showtimes %}
                         <div class="col-3 px-2 py-2">
-                            <a href="#"
+                            <a href="{% url "ticketing:showtime_details" showtime_id=showtime.id %}"
                                class="showtime-box btn
                                 {% if showtime.status != showtime.SALE_OPEN %}
                                     disabled btn-outline-secondary

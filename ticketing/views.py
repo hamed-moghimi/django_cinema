@@ -37,10 +37,18 @@ def cinema_details(request, cinema_id):
     return render(request, 'ticketing/cinema_details.html', context)
 
 
-@login_required
 def showtime_list(request):
     showtimes = ShowTime.objects.all().order_by('start_time')
     context = {
         'showtimes': showtimes
     }
     return render(request, 'ticketing/showtime_list.html', context)
+
+
+@login_required
+def showtime_details(request, showtime_id):
+    showtime = ShowTime.objects.get(pk=showtime_id)
+    context = {
+        'showtime': showtime
+    }
+    return render(request, 'ticketing/showtime_details.html', context)

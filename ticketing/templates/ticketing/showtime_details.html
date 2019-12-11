@@ -94,7 +94,7 @@
                         تومان
                     </div>
                     <div class="col-5">
-                    <form action="#" method="post" class="form-inline">
+                    <form action="" method="post" class="form-inline">
                         {% csrf_token %}
                         <select name="seat_count" class="form-control form-control-sm ml-2">
                             <option value="1">1</option>
@@ -113,6 +113,13 @@
                         </button>
                     </form>
                     </div>
+                {% endif %}
+                {% if error %}
+                    <div class="w-100 my-1"></div>
+                    <span class="col-12 alert alert-danger align-items-baseline small p-2">
+                        <i class="fas fa-exclamation-circle"></i>
+                        {{ error }}
+                    </span>
                 {% endif %}
             </div>
         </div>

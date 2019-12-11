@@ -39,6 +39,8 @@
                     <i class="fas fa-ticket-alt"></i>
                     خرید بلیت
                 </a>
+            {% endblock %}
+            {% block user_button %}
                 {% if user.is_authenticated %}
                     <div class="dropdown">
                         <a class="btn btn-primary dropdown-toggle py-1 px-2" id="user-button" href="#"
@@ -46,10 +48,21 @@
                             <i class="fas fa-user"></i>
                             {{ user.get_full_name }}
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="user-button">
+                        <div class="dropdown-menu text-right" aria-labelledby="user-button" dir="rtl">
+                            <span class="dropdown-item-text">
+                                <i class="fas fa-coins"></i>
+                                اعتبار:
+                                {{ user.profile.balance }}
+                                تومان
+                            </span>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url "accounts:profile_details" %}">
                                 <i class="far fa-address-card"></i>
                                 نمایه کاربری
+                            </a>
+                            <a class="dropdown-item" href="{% url "ticketing:ticket_list" %}">
+                                <i class="fas fa-ticket-alt"></i>
+                                بلیت‌های من
                             </a>
                             <a class="dropdown-item" href="{% url "accounts:logout" %}">
                                 <i class="fas fa-sign-out-alt"></i>

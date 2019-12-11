@@ -1,0 +1,55 @@
+{% extends "ticketing/base_page.html" %}
+{% load static %}
+
+{% block title %}
+    بلیت‌های من
+{% endblock %}
+
+{% block toolbar_title %}
+    فهرست بلیت‌های خریداری‌شده
+{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="col py-3">
+            {% if tickets %}
+                <div class="row px-2">
+                    {% for ticket in tickets %}
+                        <div class="col-3 px-2 py-2">
+                            <a href="{% url "ticketing:ticket_details" ticket_id=ticket.id %}"
+                               class="ticket-box btn btn-light text-muted text-right">
+                                <span>
+                                    <i class="fas fa-film"></i>
+                                    {{ ticket.showtime.movie.name }}
+                                </span>
+                                <br/>
+                                <span>
+                                    <i class="fas fa-building"></i>
+                                    {{ ticket.showtime.cinema.name }}
+                                </span>
+                                <br/>
+                                <span>
+                                    <i class="fas fa-clock"></i>
+                                    {{ ticket.showtime.start_time|date:"l y/n/j ساعت H:i" }}
+                                </span>
+                                <hr/>
+                                <span class="ml-4">
+                                    <i class="far fa-clock"></i>
+                                    {{ ticket.order_time|date:"Y/n/j - H:i" }}
+                                </span>
+                                <span>
+                                    <i class="fas fa-chair"></i>
+                                    {{ ticket.seat_count }}
+                                </span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="alert alert-danger">
+                    شما هنوز هیچ بلیتی خریدای نکردید.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

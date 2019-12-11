@@ -48,7 +48,8 @@ body {
     display: inline-block;
 }
 
-#toolbar .dropdown-item {
+#toolbar .dropdown-item,
+#toolbar .dropdown-item-text {
     font-size: 0.7em;
 }
 
@@ -120,4 +121,9 @@ ul.item-list > li > a {
 /* showtime details page styles */
 .btn-xs {
     font-size: 0.6em;
+}
+
+/* ticket list page styles */
+.ticket-box {
+    font-size: 0.7em;
 }

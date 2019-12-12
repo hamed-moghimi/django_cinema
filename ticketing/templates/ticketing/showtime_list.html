@@ -12,11 +12,25 @@
 {% block main_content %}
     <div class="row">
         <div class="col py-3">
+            <div class="row">
+                <div class="col my-1 mx-3 py-2 px-3 search-bar">
+                    <form action="" method="get" class="form-row px-2">
+                        {{ search_form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            جست‌وجو
+                        </button>
+                    </form>
+                </div>
+            </div>
             {% if showtimes %}
-                <form action="" method="get" class="form-row px-2">
-                    {{ search_form }}
-                    <button type="submit" class="btn btn-primary">جست‌وجو</button>
-                </form>
+                <div class="row px-2">
+                    <div class="col">
+                        <div class="alert alert-info mt-2 mb-0 py-1 px-3">
+                            {{ showtimes.count }}
+                            سانس یافت شد.
+                        </div>
+                    </div>
+                </div>
                 <div class="row px-2">
                     {% for showtime in showtimes %}
                         <div class="col-3 px-2 py-2">

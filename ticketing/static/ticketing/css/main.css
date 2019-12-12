@@ -118,6 +118,20 @@ ul.item-list > li > a {
     font-weight: normal;
 }
 
+.search-bar {
+    background-color: #efefef;
+    border-radius: 10px;
+    font-size: 0.8em;
+}
+
+.search-bar p{
+    margin: 0 20px;
+}
+
+.search-bar .errorlist {
+    color: #dd0002;
+}
+
 /* showtime details page styles */
 .btn-xs {
     font-size: 0.6em;

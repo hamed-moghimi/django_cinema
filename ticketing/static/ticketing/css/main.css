@@ -130,6 +130,9 @@ ul.item-list > li > a {
 
 .search-bar .errorlist {
     color: #dd0002;
+    padding-right: 0;
+    text-indent: 10px;
+    font-size: 0.8em;
 }
 
 /* showtime details page styles */

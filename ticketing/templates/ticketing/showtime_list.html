@@ -13,6 +13,10 @@
     <div class="row">
         <div class="col py-3">
             {% if showtimes %}
+                <form action="" method="get" class="form-row px-2">
+                    {{ search_form }}
+                    <button type="submit" class="btn btn-primary">جست‌وجو</button>
+                </form>
                 <div class="row px-2">
                     {% for showtime in showtimes %}
                         <div class="col-3 px-2 py-2">

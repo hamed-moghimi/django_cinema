@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+from ticketing.forms import ShowTimeSearchForm
 from .models import Movie, Cinema, ShowTime, Ticket
 
 
@@ -39,9 +40,15 @@ def cinema_details(request, cinema_id):
 
 
 def showtime_list(request):
-    showtimes = ShowTime.objects.all().order_by('start_time')
+    search_form = ShowTimeSearchForm(request.GET)
+    if search_form.is_valid():
+        movie_name = search_form.cleaned_data['movie_name']
+        showtimes = ShowTime.objects.filter(movie__name__contains=movie_name).order_by('start_time')
+    else:
+        showtimes = ShowTime.objects.all().order_by('start_time')
     context = {
-        'showtimes': showtimes
+        'showtimes': showtimes,
+        'search_form': search_form
     }
     return render(request, 'ticketing/showtime_list.html', context)
 

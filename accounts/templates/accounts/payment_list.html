@@ -1,0 +1,55 @@
+{% extends "accounts/base_accounts.html" %}
+{% load static %}
+
+{% block title %}
+    پرداخت‌های من
+{% endblock %}
+
+{% block toolbar_title %}
+    <i class="fas fa-receipt"></i>
+    پرداخت‌های من
+{% endblock %}
+
+{% block main_content %}
+    <div class="row">
+        <div class="col-12 mt-2">
+            <a href="#" class="btn btn-success btn-sm">
+                <i class="fas fa-plus"></i>
+                پرداخت جدید
+            </a>
+        </div>
+        <div class="col py-3">
+            {% if payments %}
+                <ul class="item-list">
+                    {% for payment in payments %}
+                        <li>
+                            <span class="ml-4">
+                                <span class="text-muted ml-1">
+                                    مبلغ:
+                                </span>
+                                {{ payment.amount }}
+                                تومان
+                            </span>
+                            <span class="ml-4">
+                                <span class="text-muted ml-1">
+                                    تاریخ تراکنش:
+                                </span>
+                                {{ payment.transaction_time|date:"Y/n/j - H:i" }}
+                            </span>
+                            <span class="ml-4">
+                                <span class="text-muted ml-1">
+                                    رسید تراکنش:
+                                </span>
+                                {{ payment.transaction_code }}
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-danger">
+                    هیچ تراکنشی برای نمایش وجود ندارد.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

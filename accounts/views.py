@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+from accounts.models import Payment
+
 
 def login_view(request):
     next_url = request.GET.get('next')
@@ -39,3 +41,12 @@ def profile_details(request):
         'profile': profile
     }
     return render(request, 'accounts/profile_details.html', context)
+
+
+@login_required
+def payment_list(request):
+    payments = Payment.objects.filter(profile=request.user.profile).order_by('-transaction_time')
+    context = {
+        'payments': payments
+    }
+    return render(request, 'accounts/payment_list.html', context)

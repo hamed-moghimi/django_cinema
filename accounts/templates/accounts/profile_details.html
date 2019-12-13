@@ -52,7 +52,7 @@
                     {{ profile.get_balance_display }}
                 </div>
                 <div class="col-4 text-left">
-                    <a class="btn btn-xs btn-success my-1" href="#">
+                    <a class="btn btn-xs btn-success my-1" href="{% url "accounts:payment_create" %}">
                         <i class="fas fa-plus"></i>
                         افزایش اعتبار
                     </a>

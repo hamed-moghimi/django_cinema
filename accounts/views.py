@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+from accounts.forms import PaymentForm
 from accounts.models import Payment
 
 
@@ -50,3 +51,19 @@ def payment_list(request):
         'payments': payments
     }
     return render(request, 'accounts/payment_list.html', context)
+
+
+@login_required
+def payment_create(request):
+    if request.method == 'POST':
+        payment_form = PaymentForm(request.POST)
+        if payment_form.is_valid():
+            payment = payment_form.save()
+            request.user.profile.deposit(payment.amount)
+            return HttpResponseRedirect(reverse('accounts:payment_list'))
+    else:
+        payment_form = PaymentForm()
+    context = {
+        'payment_form': payment_form
+    }
+    return render(request, 'accounts/payment_create.html', context)

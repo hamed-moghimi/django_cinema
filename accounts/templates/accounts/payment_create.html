@@ -1,0 +1,23 @@
+{% extends "accounts/base_accounts.html" %}
+{% load static %}
+
+{% block title %}
+    پرداخت جدید
+{% endblock %}
+
+{% block toolbar_title %}
+    <i class="fas fa-plus"></i>
+    پرداخت جدید
+{% endblock %}
+
+{% block main_content %}
+    <form action="" method="post" class="form py-2">
+        {% csrf_token %}
+        <table class="my-1">
+        {{ payment_form.as_table }}
+        </table>
+        <button type="submit" class="btn btn-success btn-sm">
+            ثبت
+        </button>
+    </form>
+{% endblock %}

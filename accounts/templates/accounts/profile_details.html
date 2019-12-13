@@ -14,6 +14,16 @@
             <div class="row px-3">
                 <div class="col-4">
                     <small class="text-muted">
+                        <i class="far fa-user"></i>
+                        نام کاربری:
+                    </small>
+                </div>
+                <div class="col-8">
+                    {{ user.username }}
+                </div>
+                <div class="w-100 my-1"></div>
+                <div class="col-4">
+                    <small class="text-muted">
                         <i class="far fa-address-card"></i>
                         نام و نام خانوادگی:
                     </small>
@@ -74,7 +84,7 @@
                 <img class="profile-image" src="{{ profile.profile_image.url }}" alt="{{ profile }}">
         {% endif %}
             <div class="profile-buttons mt-4">
-                <a class="btn btn-secondary" href="#">
+                <a class="btn btn-secondary" href="{% url "accounts:profile_edit" %}">
                     <i class="fas fa-edit"></i>
                     ویرایش نمایه
                 </a>

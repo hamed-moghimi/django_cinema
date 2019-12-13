@@ -1,0 +1,114 @@
+{% extends "accounts/base_accounts.html" %}
+{% load static %}
+
+{% block title %}
+    ویرایش نمایه
+{% endblock %}
+
+{% block toolbar_title %}
+    <i class="fas fa-edit"></i>
+    ویرایش نمایه
+{% endblock %}
+
+{% block main_content %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row py-3">
+            <div class="col-10 item-details profile-items">
+                <div class="row px-3">
+                    <div class="col-2">
+                        <small class="text-muted">
+                            <i class="far fa-user"></i>
+                            نام کاربری:
+                        </small>
+                    </div>
+                    <div class="col-4">
+                        {{ user.username }}
+                    </div>
+                    <div class="col-2 pl-0">
+                        <small class="text-muted">
+                            <i class="far fa-clock"></i>
+                            جنسیت:
+                        </small>
+                    </div>
+                    <div class="col-4">
+                        {{ profile_form.gender }}
+                    </div>
+                    <div class="w-100 my-1"></div>
+                    <div class="col-2">
+                        <small class="text-muted">
+                            <i class="far fa-address-card"></i>
+                            نام:
+                        </small>
+                    </div>
+                    <div class="col-4">
+                        {{ user_form.first_name }}
+                    </div>
+                    <div class="col-2 pl-0">
+                        <small class="text-muted">
+                            <i class="far fa-address-card"></i>
+                            نام خانوادگی:
+                        </small>
+                    </div>
+                    <div class="col-4">
+                        {{ user_form.last_name }}
+                    </div>
+                    <div class="w-100 my-1"></div>
+                    <div class="col-2">
+                        <small class="text-muted">
+                            <i class="far fa-envelope-open"></i>
+                            ایمیل:
+                        </small>
+                    </div>
+                    <div class="col-4">
+                        {{ user_form.email }}
+                    </div>
+                    <div class="col-2 pl-0">
+                        <small class="text-muted">
+                            <i class="fas fa-mobile-alt"></i>
+                            تلفن همراه:
+                        </small>
+                    </div>
+                    <div class="col-4">
+                        {{ profile_form.mobile }}
+                    </div>
+                    <div class="w-100 my-1"></div>
+                    <div class="col-2">
+                        <small class="text-muted">
+                            <i class="fas fa-home"></i>
+                            آدرس:
+                        </small>
+                    </div>
+                    <div class="col-10 item-text-box">
+                        {{ profile_form.address }}
+                    </div>
+                    <div class="w-100 my-1"></div>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        ذخیره
+                    </button>
+                </div>
+            </div>
+            <div class="col-2 pr-0 text-center">
+                {% if user.profile.profile_image %}
+                    <img class="profile-image" src="{{ user.profile.profile_image.url }}" alt="{{ user.profile }}">
+                {% endif %}
+                <button type="button" class="btn btn-warning btn-sm mt-2"
+                        data-toggle="modal" data-target="#profile-image-modal">
+                    <i class="fas fa-image"></i>
+                </button>
+                <div class="modal fade" id="profile-image-modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            {{ profile_form.profile_image }}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

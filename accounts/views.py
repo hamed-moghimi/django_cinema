@@ -58,7 +58,9 @@ def payment_create(request):
     if request.method == 'POST':
         payment_form = PaymentForm(request.POST)
         if payment_form.is_valid():
-            payment = payment_form.save()
+            payment = payment_form.save(commit=False)
+            payment.profile = request.user.profile
+            payment.save()
             request.user.profile.deposit(payment.amount)
             return HttpResponseRedirect(reverse('accounts:payment_list'))
     else:
